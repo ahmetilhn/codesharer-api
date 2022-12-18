@@ -7,7 +7,6 @@ class WorkspaceRoutes {
   }
   init() {
     const controller = new WorkspaceController();
-    console.log('controller', controller);
     this.router.route('/').post(controller.post);
   }
 }

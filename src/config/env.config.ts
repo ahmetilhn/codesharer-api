@@ -6,5 +6,6 @@ export default {
   DB_USERNAME: process.env.DB_USERNAME,
   DB_PASSWORD: process.env.DB_PASSWORD,
   DB_CLUSTER: process.env.DB_CLUSTER,
-  DB_NAME: process.env.DB_NAME,
+  DB_BETA_NAME: process.env.DB_BETA_NAME,
+  DB_PROD_NAME: process.env.DB_PROD_NAME,
 };

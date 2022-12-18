@@ -14,9 +14,7 @@ class WorkspaceController implements IBaseController {
   ): Promise<void> {
     try {
       const workspace = await this.Service.create(req);
-      res.status(201).json({
-        workspace,
-      });
+      res.status(201).json(workspace);
     } catch (error) {
       throw new Error(error);
     }

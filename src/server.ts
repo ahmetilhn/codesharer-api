@@ -1,7 +1,8 @@
 import express, { Application } from 'express';
 import cors from 'cors';
-import envConfig from './config/env-config';
-import corsConfig from './config/cors-config';
+import envConfig from './config/env.config';
+import corsConfig from './config/cors.config';
+import dbConfig from './config/db.config';
 import Routes from './routes';
 class Server {
   app: Application = express();
@@ -17,6 +18,7 @@ class Server {
     this.app.use(express.json({ limit: '10mb' }));
     this.app.use(express.urlencoded({ limit: '10mb', extended: true }));
     this.app.use(cors(corsConfig));
+    dbConfig();
   }
   initRoutes() {
     new Routes(this.app);

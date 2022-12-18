@@ -4,7 +4,7 @@ import { Request } from 'express';
 import IBaseModel from '../types/base-model.interface';
 
 class WorkspaceModel implements IBaseModel {
-  public UserSchema = new Schema<IWorkspace>(
+  public WorkspaceSchema = new Schema<IWorkspace>(
     {
       code: {
         type: String,
@@ -21,9 +21,10 @@ class WorkspaceModel implements IBaseModel {
     },
     {
       timestamps: true,
+      versionKey: false,
     }
   );
-  public Model = model<IWorkspace>('User', this.UserSchema);
+  public Model = model<IWorkspace>('Workspace', this.WorkspaceSchema);
 
   public async create(req: Request): Promise<IWorkspace> {
     try {
