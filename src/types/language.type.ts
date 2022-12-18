@@ -3,3 +3,5 @@ type LanguageType = {
   value: string;
   extensions: string;
 };
+
+export default LanguageType;

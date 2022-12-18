@@ -1,4 +1,5 @@
 import { Document } from 'mongoose';
+import LanguageType from './language.type';
 
 interface IWorkspace extends Document {
   code: string;

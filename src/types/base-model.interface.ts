@@ -1,10 +1,10 @@
-import { Request } from "express";
+import { Request, Response } from 'express';
 
 type IBaseModel = {
-  read?: (req: Request) => Promise<unknown>;
-  create?: (req: Request) => Promise<unknown>;
-  update?: (req: Request) => Promise<unknown>;
-  delete?: (req: Request) => Promise<unknown>;
+  read?: (req: Request, res: Response) => Promise<unknown>;
+  create?: (req: Request, res: Response) => Promise<unknown>;
+  update?: (req: Request, res: Response) => Promise<unknown>;
+  delete?: (req: Request, res: Response) => Promise<unknown>;
 };
 
 export default IBaseModel;

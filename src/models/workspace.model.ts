@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 import IWorkspace from '../types/workspace.interface';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 import IBaseModel from '../types/base-model.interface';
 
 class WorkspaceModel implements IBaseModel {
@@ -27,13 +27,25 @@ class WorkspaceModel implements IBaseModel {
   public Model = model<IWorkspace>('Workspace', this.WorkspaceSchema);
 
   public async create(req: Request): Promise<IWorkspace> {
-    try {
-      const payload: IWorkspace = req.body;
-      const workspace = await this.Model.create(payload);
+    const payload: IWorkspace = req.body;
+    const workspace = await this.Model.create(payload);
+    return workspace;
+  }
+
+  public async read(
+    req: Request,
+    res: Response
+  ): Promise<IWorkspace | Array<IWorkspace>> {
+    const { id } = req.params;
+    console.log(id);
+    if (id) {
+      const workspace = await this.Model.findById(id);
+      if (!workspace) {
+        res.status(404).json({ message: 'Workspace not found' });
+      }
       return workspace;
-    } catch (error) {
-      throw new Error(error);
     }
+    return this.Model.find();
   }
 }
 
