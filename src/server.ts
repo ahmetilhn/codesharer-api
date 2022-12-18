@@ -1,5 +1,5 @@
-import express, { Application } from "express";
-import envConfig from "./config/env-config";
+import express, { Application } from 'express';
+import envConfig from './config/env-config';
 class Server {
   app: Application = express();
   listen() {
