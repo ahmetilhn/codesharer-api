@@ -7,6 +7,7 @@ class WorkspaceController implements IBaseController {
   constructor() {
     this.post = this.post.bind(this);
     this.get = this.get.bind(this);
+    this.put = this.put.bind(this);
   }
   public async post(req: Request, res: Response): Promise<void> {
     try {
@@ -20,6 +21,14 @@ class WorkspaceController implements IBaseController {
   public async get(req: Request, res: Response): Promise<void> {
     try {
       const workspace = await this.Service.read(req, res);
+      res.status(200).json(workspace);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+  public async put(req: Request, res: Response): Promise<void> {
+    try {
+      const workspace = await this.Service.update(req, res);
       res.status(200).json(workspace);
     } catch (error) {
       throw new Error(error);

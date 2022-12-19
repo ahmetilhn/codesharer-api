@@ -15,7 +15,21 @@ class WorkspaceModel implements IBaseModel {
         required: true,
       },
       language: {
-        type: Object,
+        name: {
+          type: String,
+          required: true,
+        },
+        value: {
+          type: String,
+          required: true,
+        },
+        extension: {
+          type: String,
+          required: true,
+        },
+      },
+      view_count: {
+        type: Number,
         required: true,
       },
     },
@@ -37,7 +51,6 @@ class WorkspaceModel implements IBaseModel {
     res: Response
   ): Promise<IWorkspace | Array<IWorkspace>> {
     const { id } = req.params;
-    console.log(id);
     if (id) {
       const workspace = await this.Model.findById(id);
       if (!workspace) {
@@ -46,6 +59,19 @@ class WorkspaceModel implements IBaseModel {
       return workspace;
     }
     return this.Model.find();
+  }
+  public async update(req: Request, res: Response): Promise<IWorkspace> {
+    const { id } = req.params;
+    if (id) {
+      const payload: IWorkspace = req.body;
+      const workspace = await this.Model.findByIdAndUpdate(id, payload, {
+        new: true,
+      });
+      if (!workspace) {
+        res.status(404).json({ message: 'Workspace not found' });
+      }
+      return workspace;
+    }
   }
 }
 

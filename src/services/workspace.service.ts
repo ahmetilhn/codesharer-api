@@ -19,6 +19,14 @@ class WorkspaceService implements IBaseService {
       throw new Error(error);
     }
   }
+  public async update(req: Request, res: Response): Promise<unknown> {
+    try {
+      const workspace = await this.Model.update(req, res);
+      return workspace;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
 
 export default WorkspaceService;

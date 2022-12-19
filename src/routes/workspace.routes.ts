@@ -9,6 +9,7 @@ class WorkspaceRoutes {
     const controller = new WorkspaceController();
     this.router.route('/').post(controller.post);
     this.router.route('/:id').get(controller.get);
+    this.router.route('/:id').put(controller.put);
   }
 }
 export default new WorkspaceRoutes().router;
